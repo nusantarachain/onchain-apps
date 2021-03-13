@@ -5,6 +5,7 @@ Koleksi onchain-apps a.k.a dApps dan smart-contract yang bisa dideploy dan dijal
 ## Koleksi
 
 * [Umkm4](umkm4) - Implementasi *loyality program* sederhana untuk UMKM.
+* [ERC20](erc20) - Implementasi ERC20.
 
 ## Kontribusi
 
