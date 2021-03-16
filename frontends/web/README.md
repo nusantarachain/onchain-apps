@@ -6,7 +6,7 @@ Pada contoh ini aplikasi web digunakan untuk menjalankan fungsi-fungsi di [umkm4
 
 Aplikasi ini juga mendemonstrasikan cara menggunakan external Web3 account manajer seperti [Polkadot Extension](https://polkadot.js.org/extension/), anda perlu menginstall-nya terlebih dahulu untuk mencobanya, terutama apabila ingin melakukan transaksi tertanda (signed transaction).
 
-Pada contoh ini aplikasi menggunakan [Nuchain Testnet](https://dashboard.nuchain.network/?rpc=wss%3A%2F%2Ftestnet.nuchain.riset.tech) sebagai platform smart contract-nya, Anda bisa merubahnya di `nuchain.js` apabila ingin menggunakan di Testnet.
+Pada contoh ini aplikasi menggunakan [Nuchain Testnet](https://dashboard.nuchain.network/?rpc=wss%3A%2F%2Ftestnet.nuchain.riset.tech) sebagai platform smart contract-nya, Anda bisa merubahnya di `nuchain.js` apabila ingin menggunakan di Mainnet.
 
 ## Uji coba
 
