@@ -12,7 +12,7 @@ Pada contoh ini aplikasi menggunakan [Nuchain Testnet](https://dashboard.nuchain
 
 Gunakan Contract address `5GxD4njmZVGqBzapSgxLr7VqAgA6Pra94Ed2hgTb65mJ8u4m` untuk ujicoba, itu adalah address pre-deployed contract di Testnet.
 
-Screen shot:
+Screenshot:
 
 ![Nuchain smart contract](https://i.imgur.com/bj4UQWz.png)
 
