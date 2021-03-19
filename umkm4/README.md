@@ -32,7 +32,22 @@ $ cargo +nightly test
 $ cargo +nightly contract build
 ```
 
-NOTES: Make sure you have `cargo-contract` installed.
+CATATAN: Pastikan Anda sudah menginstall `cargo-contract`, apabila belum Anda bisa menginstallnya dengan perintah: `cargo install cargo-contract`
 
-[] robin
+Setelah proses build selesai maka akan ditemukan file `umkm4.contract` di direktori `target/ink`:
+
+```bash
+target/ink
+├── CACHEDIR.TAG
+├── metadata.json
+├── release
+├── umkm4.contract
+├── umkm4.wasm
+└── wasm32-unknown-unknown
+```
+
+File `umkm4.wasm` adalah Wasm binary dari app ini, `metadata.json` berisi informasi metadata dari app ini, kemudian `umkm4.contract` merupakan gabungan dari keduanya.
+
+File `umkm4.contract` bisa Anda deploy melalui [dashboard.nuchain.network](https://dashboard.nuchain.network/), untuk langkah-langkahnya bisa baca di [cara deploy Nuchain App](https://github.com/nusantarachain/nuchain/wiki/Nuchain-App).
+
 
