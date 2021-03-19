@@ -10,7 +10,7 @@ Pada contoh ini aplikasi menggunakan [Nuchain Testnet](https://dashboard.nuchain
 
 ## Uji coba
 
-Live demo bisa dicoba [http://umkm4.demo.nuchain.surge.sh/](http://umkm4.demo.nuchain.surge.sh/).
+Live demo bisa dicoba di [http://umkm4.demo.nuchain.surge.sh](http://umkm4.demo.nuchain.surge.sh/).
 Gunakan Contract address `5EfjJKjf57H6VFDStvD5fkGtyNtnjRHdQp8V9K3BxcZ2ezE4` untuk ujicoba, itu adalah address pre-deployed contract di Testnet.
 
 Screenshot:
