@@ -242,7 +242,8 @@ mod umkm4 {
         #[ink::test]
         fn register_works() {
             let mut contract = new_contract();
-            let (hash, id) = contract.register("USER1".to_string());
+            let (hash, id) = contract.register("USER1".to_string()).unwrap();
+            set_sender([0x2; 32].into());
             assert_eq!(contract.get_member_hash(id), Some(hash));
             assert!(contract.get_member_by_index(id).is_some());
             assert!(contract.get_member_by_index(id + 1).is_none());
@@ -252,7 +253,7 @@ mod umkm4 {
         fn add_point_works() {
             let mut contract = new_contract();
             set_sender([0x2; 32].into());
-            let (hash, id) = contract.register("USER1".to_string());
+            let (hash, id) = contract.register("USER1".to_string()).unwrap();
             contract.add_point(hash, 5);
             assert_eq!(contract.get_member(hash).map(|a| a.point), Some(5));
             contract.add_point(hash, 5);
@@ -263,7 +264,7 @@ mod umkm4 {
         fn use_point_works() {
             let mut contract = new_contract();
             set_sender([0x2; 32].into());
-            let (hash, _id) = contract.register("USER1".to_string());
+            let (hash, _id) = contract.register("USER1".to_string()).unwrap();
             contract.add_point(hash, 5);
             assert_eq!(contract.get_member(hash).map(|a| a.point), Some(5));
             contract.use_point(hash, 3);
@@ -281,7 +282,7 @@ mod umkm4 {
         #[ink::test]
         fn only_owner_can_add_point() {
             let mut contract = new_contract();
-            let (hash, _id) = contract.register("USER1".to_string());
+            let (hash, _id) = contract.register("USER1".to_string()).unwrap();
             set_sender([0x3; 32].into());
             contract.add_point(hash, 5);
             assert_eq!(contract.get_member(hash).map(|a| a.point), Some(0));
@@ -290,7 +291,7 @@ mod umkm4 {
         #[ink::test]
         fn only_owner_can_use_point() {
             let mut contract = new_contract();
-            let (hash, _id) = contract.register("USER1".to_string());
+            let (hash, _id) = contract.register("USER1".to_string()).unwrap();
             set_sender([0x2; 32].into());
             contract.add_point(hash, 5);
             assert_eq!(contract.get_member(hash).map(|a| a.point), Some(5));
