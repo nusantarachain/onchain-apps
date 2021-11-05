@@ -179,6 +179,10 @@ mod umkm4 {
         /// hanya admin yang bisa melakukan ini.
         #[ink(message)]
         pub fn set_owner(&mut self, new_owner: AccountId) {
+            let caller = Self::env().caller();
+            if caller != self.admin {
+                return;
+            }
             self.owner = new_owner;
         }
 
