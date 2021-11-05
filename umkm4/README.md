@@ -2,7 +2,7 @@
 
 Aplikasi loyality program sederhana diprogram untuk dapat berjalan di atas jaringan blockchain Nuchain.
 
-Progarm ini adalah pilot projek untuk ujicoba membangun aplikasi di atas jaringan blockchain Nuchain yang ditulis menggunakan eDSL [Ink!](https://substrate.dev/docs/en/knowledgebase/smart-contracts/ink-development) di bahasa pemrograman Rust dan dikompilasi ke WebAssembly.
+Progarm ini adalah pilot projek untuk ujicoba membangun aplikasi di atas jaringan blockchain Nuchain, ditulis menggunakan eDSL [Ink!](https://substrate.dev/docs/en/knowledgebase/smart-contracts/ink-development) di bahasa pemrograman Rust dan dikompilasi ke WebAssembly.
 
 ## Keunggulan
 

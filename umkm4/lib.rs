@@ -14,7 +14,10 @@ use ink_lang as ink;
 mod umkm4 {
 
     use ink_prelude::{string::String, *};
-    use ink_storage::traits::{PackedLayout, SpreadLayout};
+    use ink_storage::traits::{
+        PackedLayout,
+        SpreadLayout,
+    };
 
     // macro untuk mempermudah pembuatan struktur yang 
     // kompatibel untuk native dan WebAssembly.
@@ -92,7 +95,7 @@ mod umkm4 {
             let id = self.member_index + 1;
             let mut subject = vec![id as u8];
             subject.extend(name.bytes());
-            let hash_id = Self::env().random(&subject);
+            let (hash_id, _) = Self::env().random(&subject);
             self.members.insert(
                 hash_id,
                 MemberData {
