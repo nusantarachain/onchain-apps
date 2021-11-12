@@ -91,7 +91,11 @@ mod umkm4 {
 
         /// Register new member, return new registered user ID
         #[ink(message)]
-        pub fn register(&mut self, name: String) -> (Hash, u32) {
+        pub fn register(&mut self, name: String) -> Option<(Hash, u32)> {
+            let caller = Self::env().caller();
+            if caller != self.owner && caller != self.admin {
+                return None;
+            }
             let id = self.member_index + 1;
             let mut subject = vec![id as u8];
             subject.extend(name.bytes());
@@ -106,7 +110,7 @@ mod umkm4 {
             );
             self.members_hash.insert(id, hash_id);
             self.member_index = id;
-            (hash_id, id)
+            Some((hash_id, id))
         }
 
         /// Get last member index
@@ -121,6 +125,14 @@ mod umkm4 {
             self.members.len()
         }
 
+        #[ink(message)]
+        pub fn hash_caller(&self) -> AccountId {
+            let caller: AccountId = self.env().caller();
+            // self.env().hash_encoded::<ink_env::hash::Blake2x256, _>(&caller).into()
+            caller
+        }
+        
+
         /// Get member data
         #[ink(message)]
         pub fn get_member(&self, id: Hash) -> Option<MemberData> {
@@ -130,6 +142,10 @@ mod umkm4 {
         /// Get member data
         #[ink(message)]
         pub fn get_member_by_index(&self, index: u32) -> Option<MemberData> {
+            let caller:AccountId = Self::env().caller();
+            if caller != self.owner {
+                return None;
+            }
             self.get_member_hash(index)
                 .and_then(|h| self.members.get(&h).map(|a| a.clone()))
         }
@@ -137,6 +153,10 @@ mod umkm4 {
         /// Get member hash by index.
         #[ink(message)]
         pub fn get_member_hash(&self, index: u32) -> Option<Hash> {
+            let caller:AccountId = Self::env().caller();
+            if caller != self.owner {
+                return None;
+            }
             self.members_hash.get(&index).map(|a| a.clone())
         }
 
@@ -229,7 +249,8 @@ mod umkm4 {
         #[ink::test]
         fn register_works() {
             let mut contract = new_contract();
-            let (hash, id) = contract.register("USER1".to_string());
+            let (hash, id) = contract.register("USER1".to_string()).unwrap();
+            set_sender([0x2; 32].into());
             assert_eq!(contract.get_member_hash(id), Some(hash));
             assert!(contract.get_member_by_index(id).is_some());
             assert!(contract.get_member_by_index(id + 1).is_none());
@@ -239,7 +260,7 @@ mod umkm4 {
         fn add_point_works() {
             let mut contract = new_contract();
             set_sender([0x2; 32].into());
-            let (hash, id) = contract.register("USER1".to_string());
+            let (hash, id) = contract.register("USER1".to_string()).unwrap();
             contract.add_point(hash, 5);
             assert_eq!(contract.get_member(hash).map(|a| a.point), Some(5));
             contract.add_point(hash, 5);
@@ -250,7 +271,7 @@ mod umkm4 {
         fn use_point_works() {
             let mut contract = new_contract();
             set_sender([0x2; 32].into());
-            let (hash, _id) = contract.register("USER1".to_string());
+            let (hash, _id) = contract.register("USER1".to_string()).unwrap();
             contract.add_point(hash, 5);
             assert_eq!(contract.get_member(hash).map(|a| a.point), Some(5));
             contract.use_point(hash, 3);
@@ -268,7 +289,7 @@ mod umkm4 {
         #[ink::test]
         fn only_owner_can_add_point() {
             let mut contract = new_contract();
-            let (hash, _id) = contract.register("USER1".to_string());
+            let (hash, _id) = contract.register("USER1".to_string()).unwrap();
             set_sender([0x3; 32].into());
             contract.add_point(hash, 5);
             assert_eq!(contract.get_member(hash).map(|a| a.point), Some(0));
@@ -277,7 +298,7 @@ mod umkm4 {
         #[ink::test]
         fn only_owner_can_use_point() {
             let mut contract = new_contract();
-            let (hash, _id) = contract.register("USER1".to_string());
+            let (hash, _id) = contract.register("USER1".to_string()).unwrap();
             set_sender([0x2; 32].into());
             contract.add_point(hash, 5);
             assert_eq!(contract.get_member(hash).map(|a| a.point), Some(5));

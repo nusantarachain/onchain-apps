@@ -1,0 +1,938 @@
+{
+  "metadataVersion": "0.1.0",
+  "source": {
+    "hash": "0x1ad6dbb89f8e2c3c864723e2230495ea697f9d95d8ebf2a3b76bff668cd0ad68",
+    "language": "ink! 3.0.0-rc3",
+    "compiler": "rustc 1.51.0-nightly"
+  },
+  "contract": {
+    "name": "umkm4",
+    "version": "0.1.0",
+    "authors": [
+      "robin <robin@ansvia.com>"
+    ],
+    "description": "UMKM 4.0"
+  },
+  "spec": {
+    "constructors": [
+      {
+        "args": [
+          {
+            "name": "owner",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 1
+            }
+          }
+        ],
+        "docs": [
+          "Konstruktor pertama untuk inisasi smart contract ketika pertama kali",
+          "dideploy ke jaringan Nuchain."
+        ],
+        "name": [
+          "new"
+        ],
+        "selector": "0x9bae9d5e"
+      }
+    ],
+    "docs": [],
+    "events": [
+      {
+        "args": [
+          {
+            "docs": [],
+            "indexed": true,
+            "name": "msg",
+            "type": {
+              "displayName": [
+                "string",
+                "String"
+              ],
+              "type": 11
+            }
+          }
+        ],
+        "docs": [],
+        "name": "Failed"
+      },
+      {
+        "args": [
+          {
+            "docs": [],
+            "indexed": false,
+            "name": "user_id",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 5
+            }
+          },
+          {
+            "docs": [],
+            "indexed": false,
+            "name": "amount",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 5
+            }
+          }
+        ],
+        "docs": [],
+        "name": "PointUsed"
+      }
+    ],
+    "messages": [
+      {
+        "args": [
+          {
+            "name": "name",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 11
+            }
+          }
+        ],
+        "docs": [
+          " Register new member, return new registered user ID"
+        ],
+        "mutates": true,
+        "name": [
+          "register"
+        ],
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "Option"
+          ],
+          "type": 14
+        },
+        "selector": "0x229b553f"
+      },
+      {
+        "args": [],
+        "docs": [
+          " Get last member index"
+        ],
+        "mutates": false,
+        "name": [
+          "last_id"
+        ],
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "u32"
+          ],
+          "type": 5
+        },
+        "selector": "0xedb5035a"
+      },
+      {
+        "args": [],
+        "docs": [
+          " Get total member count"
+        ],
+        "mutates": false,
+        "name": [
+          "get_member_count"
+        ],
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "u32"
+          ],
+          "type": 5
+        },
+        "selector": "0x10e961e2"
+      },
+      {
+        "args": [],
+        "docs": [],
+        "mutates": false,
+        "name": [
+          "hash_caller"
+        ],
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "AccountId"
+          ],
+          "type": 1
+        },
+        "selector": "0x86f8759e"
+      },
+      {
+        "args": [
+          {
+            "name": "id",
+            "type": {
+              "displayName": [
+                "Hash"
+              ],
+              "type": 7
+            }
+          }
+        ],
+        "docs": [
+          " Get member data"
+        ],
+        "mutates": false,
+        "name": [
+          "get_member"
+        ],
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "Option"
+          ],
+          "type": 16
+        },
+        "selector": "0xc32af15e"
+      },
+      {
+        "args": [
+          {
+            "name": "index",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 5
+            }
+          }
+        ],
+        "docs": [
+          " Get member data"
+        ],
+        "mutates": false,
+        "name": [
+          "get_member_by_index"
+        ],
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "Option"
+          ],
+          "type": 16
+        },
+        "selector": "0xa6fec1cc"
+      },
+      {
+        "args": [
+          {
+            "name": "index",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 5
+            }
+          }
+        ],
+        "docs": [
+          " Get member hash by index."
+        ],
+        "mutates": false,
+        "name": [
+          "get_member_hash"
+        ],
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "Option"
+          ],
+          "type": 17
+        },
+        "selector": "0x3765a1b2"
+      },
+      {
+        "args": [
+          {
+            "name": "id",
+            "type": {
+              "displayName": [
+                "Hash"
+              ],
+              "type": 7
+            }
+          },
+          {
+            "name": "amount",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 5
+            }
+          }
+        ],
+        "docs": [
+          " Increase account point"
+        ],
+        "mutates": true,
+        "name": [
+          "add_point"
+        ],
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "i32"
+          ],
+          "type": 18
+        },
+        "selector": "0xae92d9fe"
+      },
+      {
+        "args": [
+          {
+            "name": "id",
+            "type": {
+              "displayName": [
+                "Hash"
+              ],
+              "type": 7
+            }
+          },
+          {
+            "name": "amount",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 5
+            }
+          }
+        ],
+        "docs": [
+          " Gunakan point yang ada pada suatu akun"
+        ],
+        "mutates": true,
+        "name": [
+          "use_point"
+        ],
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "i32"
+          ],
+          "type": 18
+        },
+        "selector": "0x4c0a10a0"
+      },
+      {
+        "args": [
+          {
+            "name": "new_owner",
+            "type": {
+              "displayName": [
+                "AccountId"
+              ],
+              "type": 1
+            }
+          }
+        ],
+        "docs": [
+          " Apabila ingin mengganti owner dari instansi kontrak ini.",
+          " hanya admin yang bisa melakukan ini."
+        ],
+        "mutates": true,
+        "name": [
+          "set_owner"
+        ],
+        "payable": false,
+        "returnType": null,
+        "selector": "0x367facd6"
+      },
+      {
+        "args": [],
+        "docs": [
+          " Mendapatkan akun owner aktif saat ini."
+        ],
+        "mutates": false,
+        "name": [
+          "get_owner"
+        ],
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "AccountId"
+          ],
+          "type": 1
+        },
+        "selector": "0x07fcd0b1"
+      },
+      {
+        "args": [],
+        "docs": [
+          " Mendapatkan akun admin instansi kontrak ini."
+        ],
+        "mutates": false,
+        "name": [
+          "get_admin"
+        ],
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "AccountId"
+          ],
+          "type": 1
+        },
+        "selector": "0x57b8a8a7"
+      }
+    ]
+  },
+  "storage": {
+    "struct": {
+      "fields": [
+        {
+          "layout": {
+            "cell": {
+              "key": "0x0000000000000000000000000000000000000000000000000000000000000000",
+              "ty": 1
+            }
+          },
+          "name": "owner"
+        },
+        {
+          "layout": {
+            "cell": {
+              "key": "0x0100000000000000000000000000000000000000000000000000000000000000",
+              "ty": 1
+            }
+          },
+          "name": "admin"
+        },
+        {
+          "layout": {
+            "struct": {
+              "fields": [
+                {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "cell": {
+                              "key": "0x0200000000000000000000000000000000000000000000000000000000000000",
+                              "ty": 4
+                            }
+                          },
+                          "name": "header"
+                        },
+                        {
+                          "layout": {
+                            "struct": {
+                              "fields": [
+                                {
+                                  "layout": {
+                                    "cell": {
+                                      "key": "0x0300000000000000000000000000000000000000000000000000000000000000",
+                                      "ty": 5
+                                    }
+                                  },
+                                  "name": "len"
+                                },
+                                {
+                                  "layout": {
+                                    "array": {
+                                      "cellsPerElem": 1,
+                                      "layout": {
+                                        "cell": {
+                                          "key": "0x0300000001000000000000000000000000000000000000000000000000000000",
+                                          "ty": 6
+                                        }
+                                      },
+                                      "len": 4294967295,
+                                      "offset": "0x0400000000000000000000000000000000000000000000000000000000000000"
+                                    }
+                                  },
+                                  "name": "elems"
+                                }
+                              ]
+                            }
+                          },
+                          "name": "entries"
+                        }
+                      ]
+                    }
+                  },
+                  "name": "keys"
+                },
+                {
+                  "layout": {
+                    "hash": {
+                      "layout": {
+                        "cell": {
+                          "key": "0x0400000001000000000000000000000000000000000000000000000000000000",
+                          "ty": 9
+                        }
+                      },
+                      "offset": "0x0300000001000000000000000000000000000000000000000000000000000000",
+                      "strategy": {
+                        "hasher": "Blake2x256",
+                        "postfix": "",
+                        "prefix": "0x696e6b20686173686d6170"
+                      }
+                    }
+                  },
+                  "name": "values"
+                }
+              ]
+            }
+          },
+          "name": "members"
+        },
+        {
+          "layout": {
+            "cell": {
+              "key": "0x0400000001000000000000000000000000000000000000000000000000000000",
+              "ty": 5
+            }
+          },
+          "name": "member_index"
+        },
+        {
+          "layout": {
+            "struct": {
+              "fields": [
+                {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "cell": {
+                              "key": "0x0500000001000000000000000000000000000000000000000000000000000000",
+                              "ty": 4
+                            }
+                          },
+                          "name": "header"
+                        },
+                        {
+                          "layout": {
+                            "struct": {
+                              "fields": [
+                                {
+                                  "layout": {
+                                    "cell": {
+                                      "key": "0x0600000001000000000000000000000000000000000000000000000000000000",
+                                      "ty": 5
+                                    }
+                                  },
+                                  "name": "len"
+                                },
+                                {
+                                  "layout": {
+                                    "array": {
+                                      "cellsPerElem": 1,
+                                      "layout": {
+                                        "cell": {
+                                          "key": "0x0600000002000000000000000000000000000000000000000000000000000000",
+                                          "ty": 12
+                                        }
+                                      },
+                                      "len": 4294967295,
+                                      "offset": "0x0700000001000000000000000000000000000000000000000000000000000000"
+                                    }
+                                  },
+                                  "name": "elems"
+                                }
+                              ]
+                            }
+                          },
+                          "name": "entries"
+                        }
+                      ]
+                    }
+                  },
+                  "name": "keys"
+                },
+                {
+                  "layout": {
+                    "hash": {
+                      "layout": {
+                        "cell": {
+                          "key": "0x0700000002000000000000000000000000000000000000000000000000000000",
+                          "ty": 13
+                        }
+                      },
+                      "offset": "0x0600000002000000000000000000000000000000000000000000000000000000",
+                      "strategy": {
+                        "hasher": "Blake2x256",
+                        "postfix": "",
+                        "prefix": "0x696e6b20686173686d6170"
+                      }
+                    }
+                  },
+                  "name": "values"
+                }
+              ]
+            }
+          },
+          "name": "members_hash"
+        }
+      ]
+    }
+  },
+  "types": [
+    {
+      "def": {
+        "composite": {
+          "fields": [
+            {
+              "type": 2,
+              "typeName": "[u8; 32]"
+            }
+          ]
+        }
+      },
+      "path": [
+        "ink_env",
+        "types",
+        "AccountId"
+      ]
+    },
+    {
+      "def": {
+        "array": {
+          "len": 32,
+          "type": 3
+        }
+      }
+    },
+    {
+      "def": {
+        "primitive": "u8"
+      }
+    },
+    {
+      "def": {
+        "composite": {
+          "fields": [
+            {
+              "name": "last_vacant",
+              "type": 5,
+              "typeName": "Index"
+            },
+            {
+              "name": "len",
+              "type": 5,
+              "typeName": "u32"
+            },
+            {
+              "name": "len_entries",
+              "type": 5,
+              "typeName": "u32"
+            }
+          ]
+        }
+      },
+      "path": [
+        "ink_storage",
+        "collections",
+        "stash",
+        "Header"
+      ]
+    },
+    {
+      "def": {
+        "primitive": "u32"
+      }
+    },
+    {
+      "def": {
+        "variant": {
+          "variants": [
+            {
+              "fields": [
+                {
+                  "type": 8,
+                  "typeName": "VacantEntry"
+                }
+              ],
+              "name": "Vacant"
+            },
+            {
+              "fields": [
+                {
+                  "type": 7,
+                  "typeName": "T"
+                }
+              ],
+              "name": "Occupied"
+            }
+          ]
+        }
+      },
+      "params": [
+        7
+      ],
+      "path": [
+        "ink_storage",
+        "collections",
+        "stash",
+        "Entry"
+      ]
+    },
+    {
+      "def": {
+        "composite": {
+          "fields": [
+            {
+              "type": 2,
+              "typeName": "[u8; 32]"
+            }
+          ]
+        }
+      },
+      "path": [
+        "ink_env",
+        "types",
+        "Hash"
+      ]
+    },
+    {
+      "def": {
+        "composite": {
+          "fields": [
+            {
+              "name": "next",
+              "type": 5,
+              "typeName": "Index"
+            },
+            {
+              "name": "prev",
+              "type": 5,
+              "typeName": "Index"
+            }
+          ]
+        }
+      },
+      "path": [
+        "ink_storage",
+        "collections",
+        "stash",
+        "VacantEntry"
+      ]
+    },
+    {
+      "def": {
+        "composite": {
+          "fields": [
+            {
+              "name": "value",
+              "type": 10,
+              "typeName": "V"
+            },
+            {
+              "name": "key_index",
+              "type": 5,
+              "typeName": "KeyIndex"
+            }
+          ]
+        }
+      },
+      "params": [
+        10
+      ],
+      "path": [
+        "ink_storage",
+        "collections",
+        "hashmap",
+        "ValueEntry"
+      ]
+    },
+    {
+      "def": {
+        "composite": {
+          "fields": [
+            {
+              "name": "name",
+              "type": 11,
+              "typeName": "String"
+            },
+            {
+              "name": "point",
+              "type": 5,
+              "typeName": "u32"
+            },
+            {
+              "name": "used_point",
+              "type": 5,
+              "typeName": "u32"
+            }
+          ]
+        }
+      },
+      "path": [
+        "umkm4",
+        "umkm4",
+        "MemberData"
+      ]
+    },
+    {
+      "def": {
+        "primitive": "str"
+      }
+    },
+    {
+      "def": {
+        "variant": {
+          "variants": [
+            {
+              "fields": [
+                {
+                  "type": 8,
+                  "typeName": "VacantEntry"
+                }
+              ],
+              "name": "Vacant"
+            },
+            {
+              "fields": [
+                {
+                  "type": 5,
+                  "typeName": "T"
+                }
+              ],
+              "name": "Occupied"
+            }
+          ]
+        }
+      },
+      "params": [
+        5
+      ],
+      "path": [
+        "ink_storage",
+        "collections",
+        "stash",
+        "Entry"
+      ]
+    },
+    {
+      "def": {
+        "composite": {
+          "fields": [
+            {
+              "name": "value",
+              "type": 7,
+              "typeName": "V"
+            },
+            {
+              "name": "key_index",
+              "type": 5,
+              "typeName": "KeyIndex"
+            }
+          ]
+        }
+      },
+      "params": [
+        7
+      ],
+      "path": [
+        "ink_storage",
+        "collections",
+        "hashmap",
+        "ValueEntry"
+      ]
+    },
+    {
+      "def": {
+        "variant": {
+          "variants": [
+            {
+              "name": "None"
+            },
+            {
+              "fields": [
+                {
+                  "type": 15,
+                  "typeName": "T"
+                }
+              ],
+              "name": "Some"
+            }
+          ]
+        }
+      },
+      "params": [
+        15
+      ],
+      "path": [
+        "Option"
+      ]
+    },
+    {
+      "def": {
+        "tuple": [
+          7,
+          5
+        ]
+      }
+    },
+    {
+      "def": {
+        "variant": {
+          "variants": [
+            {
+              "name": "None"
+            },
+            {
+              "fields": [
+                {
+                  "type": 10,
+                  "typeName": "T"
+                }
+              ],
+              "name": "Some"
+            }
+          ]
+        }
+      },
+      "params": [
+        10
+      ],
+      "path": [
+        "Option"
+      ]
+    },
+    {
+      "def": {
+        "variant": {
+          "variants": [
+            {
+              "name": "None"
+            },
+            {
+              "fields": [
+                {
+                  "type": 7,
+                  "typeName": "T"
+                }
+              ],
+              "name": "Some"
+            }
+          ]
+        }
+      },
+      "params": [
+        7
+      ],
+      "path": [
+        "Option"
+      ]
+    },
+    {
+      "def": {
+        "primitive": "i32"
+      }
+    }
+  ]
+}
