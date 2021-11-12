@@ -11,7 +11,7 @@ const keyring = new Keyring({ type: "sr25519", ss58Format: 42 });
 async function ConnectNodeAndContract(contractAddress) {
   await cryptoWaitReady();
 
-  const provider = new WsProvider("wss://testnet.nuchain.riset.tech");
+  const provider = new WsProvider("wss://satnet-testnet.node.nuchain.network");
   const api = await ApiPromise.create({
     provider,
     types: {

@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@chenfengyuan/vue-qrcode": "^1.0.2",
-    "@polkadot/api": "^4.1.1",
-    "@polkadot/api-contract": "^4.1.1",
+    "@polkadot/api": "^6.8.1",
+    "@polkadot/api-contract": "^6.8.1",
     "@polkadot/extension-dapp": "^0.37.2",
     "@polkadot/util-crypto": "^6.0.5",
     "core-js": "^3.8.3",
