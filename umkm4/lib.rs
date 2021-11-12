@@ -50,6 +50,9 @@ mod umkm4 {
         /// Admin untuk contract ini
         admin: AccountId,
 
+        /// Operator
+        operator: AccountId,
+
         /// membership data
         /// pairing AccountId -> (points, used_points)
         members: ink_storage::collections::HashMap<Hash, MemberData>,
@@ -77,12 +80,13 @@ mod umkm4 {
         /// Konstruktor pertama untuk inisasi smart contract ketika pertama kali
         /// dideploy ke jaringan Nuchain.
         #[ink(constructor)]
-        pub fn new(owner: AccountId) -> Self {
+        pub fn new(owner: AccountId, operator: AccountId) -> Self {
             let initiator = Self::env().caller();
 
             Self {
                 owner,
                 admin: initiator,
+                operator: operator,
                 members: Default::default(),
                 member_index: 0,
                 members_hash: Default::default(),
@@ -179,9 +183,13 @@ mod umkm4 {
         #[ink(message)]
         pub fn use_point(&mut self, id: Hash, amount: u32) -> i32 {
             let caller = Self::env().caller();
+
             if caller != self.owner {
-                return -1;
+                if caller != self.operator {
+                    return -1;
+                }
             }
+
             if let Some(m) = self.members.get_mut(&id) {
                 let point = m.point.clone();
                 if m.point < amount {
@@ -209,10 +217,27 @@ mod umkm4 {
             self.owner = new_owner;
         }
 
+        /// Apabila ingin mengganti operator dari instansi kontrak ini.
+        /// hanya admin yang bisa melakukan ini.
+        #[ink(message)]
+        pub fn set_operator(&mut self, new_operator: AccountId) {
+            let caller = Self::env().caller();
+            if caller != self.admin {
+                return;
+            }
+            self.operator = new_operator;
+        }
+
         /// Mendapatkan akun owner aktif saat ini.
         #[ink(message)]
         pub fn get_owner(&self) -> AccountId {
             self.owner
+        }
+
+        /// Mendapatkan akun operator aktif saat ini.
+        #[ink(message)]
+        pub fn get_operator(&self) -> AccountId {
+            self.operator
         }
 
         /// Mendapatkan akun admin instansi kontrak ini.

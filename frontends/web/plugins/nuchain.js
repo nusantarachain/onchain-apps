@@ -12,6 +12,7 @@ async function ConnectNodeAndContract(contractAddress) {
   await cryptoWaitReady();
 
   const provider = new WsProvider("wss://satnet-testnet.node.nuchain.network");
+//   const provider = new WsProvider("wss://id.node.nuchain.network");
   const api = await ApiPromise.create({
     provider,
     types: {
